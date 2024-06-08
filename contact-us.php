@@ -63,8 +63,13 @@ class ContactUs {
         require_once('backend/contactus_list.php');
          $obj = new Contactus_List();
         echo '<div class="wrap col-sm-3"><h2>Contactus List</h2>';
-        $obj->prepare_items();        
+        $obj->prepare_items(); 
+        echo '<form method="get" class="contact_us_list">
+	<input type="hidden" name="page" value="contact_us_list">';
+	if (!$obj->has_items() ) $_REQUEST['s'] = ' ';
+	$obj->search_box( 'search', 'search_id' );      
         $obj->display();
+         echo '</form>'; 
         echo '</div>';
         ?>
    <?php }
